@@ -10,6 +10,7 @@
     <!--扫描控制器-->
     <context:component-scan base-package="com.my_shop.controller"></context:component-scan>
 
+    <mvc:annotation-driven/>
 
     <bean name="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
