@@ -7,7 +7,7 @@
 
 
     <typeAliases>
-
+        <package name="com.my_shop.entity"></package>
     </typeAliases>
 
 

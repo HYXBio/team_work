@@ -10,17 +10,6 @@
     <!--扫描控制器-->
     <context:component-scan base-package="*"></context:component-scan>
 
-    <!--注解确定转换-->
-    <mvc:annotation-driven conversion-service="*"></mvc:annotation-driven>
-
-    <!--配置Converter转换器，转换工程（日期、去除2段空格）-->
-    <bean name="*" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-        <property name="converters">
-            <list>
-                <bean class="*"></bean>
-            </list>
-        </property>
-    </bean>
 
     <bean name="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
