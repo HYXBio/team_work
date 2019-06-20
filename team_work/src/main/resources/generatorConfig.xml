@@ -16,7 +16,7 @@
 
         <!-- （2）数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-        connectionURL="jdbc:mysql://localhost:3306/report_system?characterEncoding=UTF-8"
+        connectionURL="jdbc:mysql://localhost:3306/db_shop?characterEncoding=UTF-8"
                         userId="root"
                         password="123">
         </jdbcConnection>
@@ -26,40 +26,54 @@
         </javaTypeResolver>
 
         <!-- （3）数据表对应的model层  -->
-        <javaModelGenerator targetPackage="com.report_system.entity"
+        <javaModelGenerator targetPackage="com.db_shop.entity"
                             targetProject="src\main\java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <!-- (4)sql mapper 映射配置文件 -->
-        <sqlMapGenerator targetPackage="com.report_system.mapper"
+        <sqlMapGenerator targetPackage="com.db_shop.mapper"
                          targetProject="src\main\java">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- (5)mybatis3中的mapper接口 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.report_system.mapper"
+                             targetPackage="com.db_shop.mapper"
                              targetProject="src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <!-- (5)数据表进行生成操作 schema:相当于库名; tableName:表名;
+        <!-- (6)数据表进行生成操作 schema:相当于库名; tableName:表名;
             domainObjectName:对应的DO
         -->
-        <table schema="report_system" tableName="tb_notice" domainObjectName="Notice"
+        <table schema="db_shop" tableName="tb_address" domainObjectName="Address"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table schema="report_system" tableName="tb_report" domainObjectName="Report"
+        <table schema="db_shop" tableName="tb_commodity" domainObjectName="Commodity"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-
-        <table schema="report_system" tableName="tb_user" domainObjectName="User"
+        <table schema="db_shop" tableName="tb_customer" domainObjectName="Customer"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+        <table schema="db_shop" tableName="tb_order" domainObjectName="Order"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+        <table schema="db_shop" tableName="tb_order_detial" domainObjectName="OrderDetial"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+        <table schema="db_shop" tableName="tb_shopping_cart" domainObjectName="ShoppingCart"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
