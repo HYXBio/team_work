@@ -23,9 +23,10 @@ public class CommodityTest {
 
     @Test
     public void fun1(){
-        JSONObject commdityList = commdityService.getCommdityList(3);
+        JSONObject commdityList = commdityService.getCommdityList(5);
         JSONObject commdityDetial = commdityService.getCommdityDetial(5);
-        System.out.println(commdityList);
+        JSONObject commdityDetial1 = commdityService.getCommdityDetial(1);
+        System.out.println(commdityDetial1);
     }
 
     @Test
