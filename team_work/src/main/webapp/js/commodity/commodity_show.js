@@ -2,12 +2,11 @@
 getTb_CommodityList();
 function getTb_CommodityList() {
     $.ajax({
-        url:"/shop/tb_Commodity/getTb_CommodityList.action",
+        url:"/shop/commdity/getCommidtyList.action",
         type:"GET",
         success:function (result) {
-            var result = JSON.parse(result)
             if (result.code == 0){
-                var list = result.data;
+                var list = result.data.list;
                 handleTb_CommodityList(list);
             }else{
                 alert(result.msg)
@@ -19,7 +18,7 @@ function getTb_CommodityList() {
     })
 }
 //将商品列表转成HTML标签
-function handleTb_CommodityList() {
+function handleTb_CommodityList(list) {
     var row = '<div class="left">\n' +
         '                    <!--放大镜-->\n' +
         '                \t<div class="pro_detail">\n' +
@@ -62,9 +61,12 @@ function handleTb_CommodityList() {
         '                    </div>\n' +
         '                    <div class="sale"><small>销量：</small><span class="on">&tb_CommodityListSales</span><div class="clear"></div></div>\n' +
         '                    <div class="sub"><a href="shopcar.html" class="btn01"></a><a href="shopcar.html" class="btn02"></a></div>\n' +
-        '                </div>';
+        '                </div>' +
+        '                <div class="clear"></div>';
 
     var allHtml = "";
+
+
     for (var i = 0;i < list.length ;i++){
         var tb_commodity = list[i];
 
@@ -76,7 +78,7 @@ function handleTb_CommodityList() {
             .replace("&tb_CommodityListIn_stock",tb_commodity.in_stock)
             .replace("&tb_CommodityListSales",tb_commodity.sales_volume);
 
-        allHtml += row_;
+        allHtml = row_;
     }
     $("#tb_CommodityList").html(allHtml);
 }
