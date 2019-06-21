@@ -51,4 +51,39 @@ public class CommdityServiceImpl implements CommdityService {
         result.put("data",commodity);
         return result;
     }
+
+    /**
+     * 搜索商品
+     * @param summary
+     * @return
+     */
+    @Override
+    public JSONObject searchCommdity(String summary) {
+        JSONObject jsonObject = new JSONObject();
+        List<Commodity> commodityList =null;
+        if(summary!=null){
+            commodityList = commodityMapper.selectCommdityBySummary(summary);
+            jsonObject.put("code",0);
+            jsonObject.put("msg","搜索结果");
+            jsonObject.put("data",commodityList);
+        }else if(commodityList==null) {
+            jsonObject.put("code",1);
+            jsonObject.put("msg","搜索为空");
+        }
+        return jsonObject;
+    }
+
+    /**
+     * 排序
+     * @return
+     */
+    @Override
+    public JSONObject orderByStock() {
+        List<Commodity> commodityList = commodityMapper.selectCommdityOrderBy();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        jsonObject.put("msg","排序");
+        jsonObject.put("data",commodityList);
+        return jsonObject;
+    }
 }

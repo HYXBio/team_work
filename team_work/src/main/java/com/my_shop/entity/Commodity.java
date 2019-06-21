@@ -80,4 +80,18 @@ public class Commodity {
     public void setSalesVolume(Integer salesVolume) {
         this.salesVolume = salesVolume;
     }
+
+    @Override
+    public String toString() {
+        return "Commodity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", discount=" + discount +
+                ", inStock=" + inStock +
+                ", salesVolume=" + salesVolume +
+                '}';
+    }
 }

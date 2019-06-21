@@ -52,7 +52,7 @@ public class CustomerController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/customer/getCustomerMessage.action")
+    @RequestMapping(value = "/user/customer/getCustomerMessage.action")
     @ResponseBody
     public JSONObject customerRegion(HttpServletRequest request){
         Integer id = (Integer) request.getAttribute("id");

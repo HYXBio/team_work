@@ -31,4 +31,28 @@ public class AddressServiceImpl implements AddressService {
         }
         return result;
     }
+
+    /**
+     * 插入或者更新用户地址
+     * @param address
+     * @return
+     */
+    @Override
+    public JSONObject upDateOrAddAddress(Address address) {
+        int i=0;
+        JSONObject jsonObject = new JSONObject();
+        if(address.getId()!=null){
+             i = addressMapper.updateByPrimaryKeySelective(address);
+        }else {
+             i = addressMapper.insertSelective(address);
+        }
+        if(i!=0){
+            jsonObject.put("code",0);
+            jsonObject.put("msg","添加地址成功");
+        }else {
+            jsonObject.put("code",1);
+            jsonObject.put("msg","添加地址失败");
+        }
+        return jsonObject;
+    }
 }

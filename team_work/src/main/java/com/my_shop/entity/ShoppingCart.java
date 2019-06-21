@@ -40,4 +40,14 @@ public class ShoppingCart {
     public void setCommodityNumber(Integer commodityNumber) {
         this.commodityNumber = commodityNumber;
     }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "id=" + id +
+                ", customerId=" + customerId +
+                ", commodityId=" + commodityId +
+                ", commodityNumber=" + commodityNumber +
+                '}';
+    }
 }

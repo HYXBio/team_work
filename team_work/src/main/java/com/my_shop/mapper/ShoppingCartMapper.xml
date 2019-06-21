@@ -79,4 +79,20 @@
       commodity_number = #{commodityNumber,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectCartByCustomer" parameterType="int" resultMap="CommdityResultMap">
+    select id,commodity_id,commodity_number
+    from tb_shopping_cart
+     where customer_id=#{customer_id}
+  </select>
+
+
+  <resultMap id="CommdityResultMap" type="com.my_shop.vo.ShowCartCommodity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="commodity_id" jdbcType="INTEGER" property="commodityId" />
+    <result column="commodity_number" jdbcType="INTEGER" property="commodityNumber" />
+    <association property="commodity" column="commodity_id"
+                 select="com.my_shop.mapper.CommodityMapper.selectCommdityById">
+    </association>
+  </resultMap>
 </mapper>

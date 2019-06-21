@@ -23,10 +23,15 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.my_shop.entity.Order">
-    insert into tb_order (id, customer_id, address_id, 
+
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      select LAST_INSERT_ID()
+    </selectKey>
+
+    insert into tb_order (customer_id, address_id,
       total_quantity, total_price, status
       )
-    values (#{id,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, 
+    values ( #{customerId,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER},
       #{totalQuantity,jdbcType=INTEGER}, #{totalPrice,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER}
       )
   </insert>
@@ -103,4 +108,5 @@
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

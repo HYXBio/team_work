@@ -17,4 +17,16 @@ public interface CommdityService {
      * @return
      */
     public JSONObject getCommdityDetial(Integer id);
+
+    /**
+     * 搜索
+     * @param summary
+     * @return
+     */
+    public JSONObject searchCommdity(String summary);
+
+    /**
+     * 按销量排序
+     */
+    public JSONObject orderByStock();
 }

@@ -60,4 +60,16 @@ public class Address {
     public void setDetialAddress(String detialAddress) {
         this.detialAddress = detialAddress == null ? null : detialAddress.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", customerId=" + customerId +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", distric='" + distric + '\'' +
+                ", detialAddress='" + detialAddress + '\'' +
+                '}';
+    }
 }

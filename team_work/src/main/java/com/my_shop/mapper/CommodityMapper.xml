@@ -130,8 +130,20 @@
     select id,name,price,img_url from tb_commodity limit #{page},5
   </select>
 
+  <select id="selectCommdityById" parameterType="int" resultType="commodity">
+    select name,price,img_url imgUrl from tb_commodity where id =#{id}
+  </select>
+
   <select id="selectCommdityCount"  resultType="int">
     select count(id) from tb_commodity
+  </select>
+
+  <select id="selectCommdityBySummary"  parameterType="string" resultType="commodity">
+    select id,name,price,img_url from tb_commodity where name like "%"#{summary}"%"
+  </select>
+
+  <select id="selectCommdityOrderBy"  parameterType="string" resultType="commodity">
+    select id,name,price,img_url from tb_commodity order by desc
   </select>
 
 </mapper>

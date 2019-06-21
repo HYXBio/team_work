@@ -25,10 +25,41 @@ public class CommodityController {
         return commdityList;
     }
 
+    /**
+     * 显示商品详情
+     * @param id
+     * @return
+     */
     @RequestMapping("/commdity/getCommidtyDetial.action")
     @ResponseBody
     public JSONObject getCommidtyDetial(Integer id){
         JSONObject commdityList = commdityService.getCommdityDetial(id);
         return commdityList;
     }
+
+    /**
+     * 搜索
+     * @param summary
+     * @return
+     */
+    @RequestMapping("/commdity/searchCommidty.action")
+    @ResponseBody
+    public JSONObject searchCommidty(String summary){
+        JSONObject jsonObject = commdityService.searchCommdity(summary);
+        return jsonObject;
+    }
+
+    /**
+     * 排序
+     * @return
+     */
+    @RequestMapping("/commdity/orderByStock.action")
+    @ResponseBody
+    public JSONObject orderByStock(){
+        JSONObject jsonObject = commdityService.orderByStock();
+        return jsonObject;
+    }
+
+
+
 }

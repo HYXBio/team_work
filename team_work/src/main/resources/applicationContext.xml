@@ -39,6 +39,9 @@
 
     <bean name="commdityService" class="com.my_shop.service.impl.CommdityServiceImpl"></bean>
 
+    <bean name="shoppingCartService" class="com.my_shop.service.impl.ShoppingCartServiceImpl"></bean>
+
+    <bean name="orderService" class="com.my_shop.service.impl.OrderServiceImpl"></bean>
 
     <!--5:mapper代理实现，批量注册-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
