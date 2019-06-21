@@ -5,6 +5,7 @@
 <title>登陆</title>
 <link href="css/style.css" type="text/css" rel="stylesheet" />
     <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/md5.js"></script>
 </head>
 <body class="member">
 
@@ -27,7 +28,7 @@
     	<div action="member.html" class="form">
         	<p class="p01"><span>会员登录</span><a href="reg.html">免费注册</a></p>
         	<p class="p02"><input type="text" value="账户名" id="name" class="txt" onfocus="if(value=='账户名') {value=''}" onblur="if(value=='') {value='账户名'}"/></p>
-            <p class="p03"><input type="text" value="密码" id="password" class="txt" onfocus="if(value=='密码') {value=''}" onblur="if(value=='') {value='密码'}"/></p>
+            <p class="p03"><input type="password" value="密码" id="password" class="txt" onfocus="if(value=='密码') {value=''}" onblur="if(value=='') {value='密码'}"/></p>
             <p class="p04"><span class="sp01"><input type="checkbox" name=""/>自动登录</span><span class="sp02">忘记密码？点击<a href="pwd.html">找回密码</a></span></p>
             <p class="p05"><input type="button" id="userLogin" value="立即登陆" class="sub"/></p>
             <p class="p06">使用合作网站账号登录：</p>
@@ -43,13 +44,15 @@
 </div>
 </body>
 <script type="text/javascript">
+    //用户登录
     $("#userLogin").click(function () {
+        var password =hex_md5($("#password").val());
         $.ajax({
            url:"/shop/customer/customerLogin.action",
            type:"POST",
            data:{
                name:$("#name").val(),
-               password:$("#password").val()
+               password:password
            }, success:function (result) {
                 if(result.code!=0){
                     alert(result.msg);

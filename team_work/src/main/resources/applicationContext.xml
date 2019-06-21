@@ -35,6 +35,11 @@
     <!--注册sercice-->
     <bean name="customerService" class="com.my_shop.service.impl.CustomerServiceImpl"></bean>
 
+    <bean name="addressService" class="com.my_shop.service.impl.AddressServiceImpl"></bean>
+
+    <bean name="commdityService" class="com.my_shop.service.impl.CommdityServiceImpl"></bean>
+
+
     <!--5:mapper代理实现，批量注册-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>

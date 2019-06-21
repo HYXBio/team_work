@@ -126,6 +126,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+  <select id="selectCommdityList" parameterType="int" resultType="commodity">
+    select id,name,price,img_url from tb_commodity limit #{page},5
+  </select>
 
+  <select id="selectCommdityCount"  resultType="int">
+    select count(id) from tb_commodity
+  </select>
 
 </mapper>
