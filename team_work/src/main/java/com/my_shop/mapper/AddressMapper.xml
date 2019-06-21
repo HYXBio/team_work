@@ -103,4 +103,10 @@
       detial_address = #{detialAddress,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByCustomerId" parameterType="int" resultType="address">
+    select id,province,city,distric,detial_address
+    from tb_address
+    where  customer_id = #{customer_id}
+  </select>
 </mapper>

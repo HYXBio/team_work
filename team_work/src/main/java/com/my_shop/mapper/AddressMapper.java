@@ -2,6 +2,8 @@ package com.my_shop.mapper;
 
 import com.my_shop.entity.Address;
 
+import java.util.List;
+
 public interface AddressMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface AddressMapper {
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);
+
+    List<Address> selectByCustomerId(Integer customer_id);
 }
