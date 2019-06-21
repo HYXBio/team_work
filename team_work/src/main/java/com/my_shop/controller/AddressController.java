@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class AddressController {
@@ -23,8 +22,8 @@ public class AddressController {
      */
     @RequestMapping(value = "/user/address/getCustomerAddress.action")
     @ResponseBody
-    public JSONObject getCustomerAddress(HttpSession session){
-        Integer id = (Integer) session.getAttribute("id");
+    public JSONObject getCustomerAddress(HttpServletRequest request){
+        Integer id = (Integer) request.getAttribute("id");
         JSONObject result = addressService.getCustomerAddress(id);
         return result;
     }
@@ -37,8 +36,8 @@ public class AddressController {
      */
     @RequestMapping(value = "/user/address/upDateOrAddAddress.action")
     @ResponseBody
-    public JSONObject upDateOrAddAddress(Address address, HttpSession session){
-        Integer id = (Integer) session.getAttribute("id");
+    public JSONObject upDateOrAddAddress(Address address, HttpServletRequest request){
+        Integer id = (Integer) request.getAttribute("id");
         address.setCustomerId(id);
         JSONObject result = addressService.upDateOrAddAddress(address);
         return result;

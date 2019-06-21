@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class ShoppingCartController {
@@ -25,8 +24,8 @@ public class ShoppingCartController {
      */
     @RequestMapping(value = "/user/shopping_cart/addToShoppingCar.action")
     @ResponseBody
-    public JSONObject addToShoppingCar(HttpSession session, ShoppingCart shoppingCart){
-        Integer id = (Integer) session.getAttribute("id");
+    public JSONObject addToShoppingCar(HttpServletRequest request, ShoppingCart shoppingCart){
+        Integer id = (Integer) request.getAttribute("id");
         shoppingCart.setCustomerId(id);
         JSONObject result = shoppingCartService.addToCart(shoppingCart);
         return result;
@@ -39,8 +38,8 @@ public class ShoppingCartController {
      */
     @RequestMapping(value = "/user/shopping_cart/getCustomerShoppingCar.action")
     @ResponseBody
-    public JSONObject getCustomerShoppingCar(HttpSession session){
-        Integer id = (Integer) session.getAttribute("id");
+    public JSONObject getCustomerShoppingCar(HttpServletRequest request){
+        Integer id = (Integer) request.getAttribute("id");
         JSONObject cartList = shoppingCartService.getCartList(id);
         return cartList;
     }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class OrderController {
@@ -17,9 +16,9 @@ public class OrderController {
 
     @RequestMapping(value = "/user/order/orderGeneration.action")
     @ResponseBody
-    public JSONObject orderGeneration(Integer[] cart_ids, Integer address_id, HttpSession session){
-        Integer id = (Integer) session.getAttribute("id");
-        orderService.handlerGenerationOrder(cart_ids,address_id,id);
+    public JSONObject orderGeneration(Integer[] cart_ids,Integer address_id,HttpServletRequest request){
+        Integer id = (Integer) request.getAttribute("id");
+
         JSONObject result = null;
         return result;
     }
