@@ -1,14 +1,15 @@
-
+var cartList;
 getShopCartList();
 //获取购物车内的商品列表信息
 function getShopCartList() {
 
     $.ajax({
-        url:"/shop/shop_Cart/getShop_CartList.action",
+        url:"/shop/user/shopping_cart/getCustomerShoppingCar.action",
         type:"GET",
         success:function (result) {
             if (result.code=="0")
             {
+                cartList=result.data;
                 handleShopCartList(result.data);
             }
         },
@@ -21,6 +22,7 @@ function getShopCartList() {
 
 //处理获取到的商品信息  展示在页面上
 function  handleShopCartList(list) {
+
     var row=
         '  <tr class="tr_c" >    ' +
 
@@ -66,12 +68,13 @@ $("#getShopCartList").on("click",".jian",function () {
     var pId=$(this).parent().parent().children().eq(0).children(":input.pId").val();
     if(count=="1")
     {
+
         //删除
     }else {
         $.ajax({
             url:"/shop/shop_Cart/minus.action",
             data:{
-                pId:pId,
+                pId:pId
 
             },
             success:function (result) {
@@ -166,8 +169,6 @@ $("#getShopCartList").on("click",".deleteOne",function () {
 
 $(".batchDelete").click(function () {
 
-
-    var pId=$(this).parent().parent().children().eq(0).children(":input.pId").val();
     var pIds = new Array();
     //给每一个选中的标签都绑定一个方法
     //$("input[name='uname']:checked").each(function(){
@@ -195,5 +196,11 @@ $(".batchDelete").click(function () {
             console.log(error)
         }
     })
+});
+
+
+$(".code").click(function () {
+   sessionStorage.setItem("cartList",list);
+   location.href="info.html";
 });
 
