@@ -113,7 +113,7 @@ function handleTb_CommodityList(list) {
         var id = tb_commodity.id;
         var number = $("#commodity_number").val()||"";
 
-        if(number > 1){
+        if(number > 0){
             //添加id,数量到购物车
             addShopping_cart(id,number);
         }
