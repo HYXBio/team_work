@@ -1,11 +1,23 @@
-//获取用户列表
-getTb_CommodityList();
-function getTb_CommodityList() {
+//获取商品id
+var id = null;
+getPara();
+function getPara() {
+    id =getQueryString("id")||"";
+    alert(id);
+    if (id.length > 0){
+        getTb_CommodityList(id);
+    }
+}
+
+//获取商品详情列表
+function getTb_CommodityList(uid) {
     $.ajax({
-        url:"/shop/tb_Commodity/getTb_CommodityList.action",
+        url:"/shop/commdity/getCommidtyDetial.action",
         type:"GET",
+        data:{
+            id:uid
+        },
         success:function (result) {
-            var result = JSON.parse(result)
             if (result.code == 0){
                 var list = result.data;
                 handleTb_CommodityList(list);
@@ -19,20 +31,20 @@ function getTb_CommodityList() {
     })
 }
 //将商品列表转成HTML标签
-function handleTb_CommodityList() {
+function handleTb_CommodityList(list) {
     var row = '<div class="left">\n' +
         '                    <!--放大镜-->\n' +
-        '                \t<div class="pro_detail">\n' +
+        '                  <div class="pro_detail">\n' +
         '                        <div class="pro_detail_left">\n' +
-        '                            <div class="jqzoom"><img src="&tb_CommodityListImg" class="fs" alt="" jqimg="&tb_CommodityListImg" id="bigImg"/></div>\n' +
+        '                            <div class="jqzoom"><img src="&tb_CommodityListImg" class="fs" alt="" jqimg="&tb_CommodityListImg1" id="bigImg"/></div>\n' +
         '                            <span>\n' +
         '                                 <ul class="imgList">\n' +
-        '                                    <li class="on"><img src="&tb_CommodityListImg" alt="" /></li>\n' +
-        '                                    <li><img src="&tb_CommodityListImg" alt="" /></li>\n' +
-        '                                    <li><img src="&tb_CommodityListImg" alt="" /></li>\n' +
-        '                                    <li><img src="&tb_CommodityListImg" alt="" /></li>\n' +
-        '                                    <li><img src="&tb_CommodityListImg" alt="" /></li>\n' +
-        '                                    <li class="last"><img src="&tb_CommodityListImg" alt="" /></li>\n' +
+        '                                    <li class="on"><img src="&tb_CommodityListImg2" alt="" /></li>\n' +
+        '                                    <li><img src="&tb_CommodityListImg3" alt="" /></li>\n' +
+        '                                    <li><img src="&tb_CommodityListImg4" alt="" /></li>\n' +
+        '                                    <li><img src="&tb_CommodityListImg5" alt="" /></li>\n' +
+        '                                    <li><img src="&tb_CommodityListImg6" alt="" /></li>\n' +
+        '                                    <li class="last"><img src="&tb_CommodityListImg7" alt="" /></li>\n' +
         '                                 </ul>\n' +
         '                             </span>\n' +
         '                        </div>\n' +
@@ -49,10 +61,10 @@ function handleTb_CommodityList() {
         '                            <td width="8%">售价：</td>\n' +
         '                            <td width="41%"><b>￥<span>&tb_CommodityListPrice</span></b></td>\n' +
         '                            <td width="7%">原价：</td>\n' +
-        '                            <td width="44%"><del>￥<span>&tb_CommodityListDiscount</span>></del></td>\n' +
+        '                            <td width="44%"><del>￥<span>&tb_CommodityListDiscount</span></del></td>\n' +
         '                          </tr>\n' +
         '                        </table>\n' +
-        '                  \t</div>\n' +
+        '                  </div>\n' +
         '                    <div class="send"><small>配送至：</small><input value="北京朝阳区三环以内" name="" /><span>由 <u>奥凡尼旗舰店</u>从广东佛山市发货，并提供售后服务。</span><div class="clear"></div></div>\n' +
         '                    <div class="size"><small>选择尺码：</small><p><span>进口厚皮 双人位+贵妃位+边几</span><span class="on">进口厚皮 双人位+贵妃位+边几</span><span>进口厚皮 全套系列</span><span>进口厚皮 双+贵+单+边几</span></p><div class="clear"></div></div>\n' +
         '                    <div class="number">\n' +
@@ -60,23 +72,44 @@ function handleTb_CommodityList() {
         '                        <div class="ku"><p>件&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存<span>&tb_CommodityListIn_stock</span>件</p></div>\n' +
         '                        <div class="clear"></div>\n' +
         '                    </div>\n' +
-        '                    <div class="sale"><small>销量：</small><span class="on">&tb_CommodityListSales</span><div class="clear"></div></div>\n' +
-        '                    <div class="sub"><a href="shopcar.html" class="btn01"></a><a href="shopcar.html" class="btn02"></a></div>\n' +
-        '                </div>';
+        '                    <div class="sale"><small>销量：</small><span class="on">3350</span><div class="clear"></div></div>\n' +
+        '                    <div class="sub"><a href="shopcar.html?id=&tb_CommodityListId" class="btn01"></a><a href="shopcar.html?id=&tb_CommodityListId1" class="btn02"></a></div>\n' +
+        '                </div>' +
+        '                <div class="clear"></div>';
 
-    var allHtml = "";
-    for (var i = 0;i < list.length ;i++){
-        var tb_commodity = list[i];
+        var allHtml = "";
+        var tb_commodity = list;
+        var row_ = row.replace("&tb_CommodityListImg",tb_commodity.imgUrl)
+                    .replace("&tb_CommodityListImg1",tb_commodity.imgUrl)
+                    .replace("&tb_CommodityListImg2",tb_commodity.imgUrl)
+                    .replace("&tb_CommodityListImg3",tb_commodity.imgUrl)
+                    .replace("&tb_CommodityListImg4",tb_commodity.imgUrl)
+                    .replace("&tb_CommodityListImg5",tb_commodity.imgUrl)
+                    .replace("&tb_CommodityListImg6",tb_commodity.imgUrl)
+                    .replace("&tb_CommodityListImg7",tb_commodity.imgUrl)
+                    .replace("&tb_CommodityListName",tb_commodity.name)
+                    .replace("&tb_CommodityListDesc",tb_commodity.description)
+                    .replace("&tb_CommodityListPrice",tb_commodity.price)
+                    .replace("&tb_CommodityListDiscount",tb_commodity.discount)
+                    .replace("&tb_CommodityListIn_stock",tb_commodity.inStock)
+                    .replace("&tb_CommodityListSales",tb_commodity.salesVolume)
+                    .replace("&tb_CommodityListId",tb_commodity.id)
+                    .replace("&tb_CommodityListId1",tb_commodity.id);
 
-        var row_ = row.replace("&tb_CommodityListImg",tb_commodity.img_url)
-            .replace("&tb_CommodityListName",tb_commodity.name)
-            .replace("&tb_CommodityListDesc",tb_commodity.description)
-            .replace("&tb_CommodityListPrice",tb_commodity.price)
-            .replace("&tb_CommodityListDiscount",tb_commodity.discount)
-            .replace("&tb_CommodityListIn_stock",tb_commodity.in_stock)
-            .replace("&tb_CommodityListSales",tb_commodity.sales_volume);
+        allHtml = row_;
 
-        allHtml += row_;
-    }
     $("#tb_CommodityList").html(allHtml);
 }
+
+
+//正则表达式
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+}
+
+
+
+

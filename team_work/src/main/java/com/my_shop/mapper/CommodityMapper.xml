@@ -127,7 +127,7 @@
   </update>
 
   <select id="selectCommdityList" parameterType="int" resultType="commodity">
-    select id,name,price,img_url from tb_commodity limit #{page},5
+    select id,name,price,img_url imgUrl from tb_commodity limit #{page},5
   </select>
 
   <select id="selectCommdityById" parameterType="int" resultType="commodity">
