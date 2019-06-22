@@ -51,7 +51,8 @@ public class ShoppingCartController {
 //        Integer id = (Integer) session.getAttribute("id");
 //        JSONObject cartList = shoppingCartService.getCartList(id);
 //        return cartList;
-        return null;
+        JSONObject cartList = shoppingCartService.getOrderCartList(ids);
+        return cartList;
     }
 
 
