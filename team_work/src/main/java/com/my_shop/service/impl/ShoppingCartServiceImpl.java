@@ -27,13 +27,21 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public JSONObject addToCart(ShoppingCart shoppingCart) {
         JSONObject jsonObject = new JSONObject();
-        int insert = shoppingCartMapper.insert(shoppingCart);
-        if(insert!=0){
+        ShoppingCart judgeCart = shoppingCartMapper.selectByCustomerAndCommodity(shoppingCart);
+        if(judgeCart!=null){
+            judgeCart.setCommodityNumber(judgeCart.getCommodityNumber()+1);
+            shoppingCartMapper.updateByPrimaryKeySelective(judgeCart);
             jsonObject.put("code",0);
             jsonObject.put("msg","加入购物车成功");
         }else {
-            jsonObject.put("code",1);
-            jsonObject.put("msg","加入购物车失败");
+            int insert = shoppingCartMapper.insert(shoppingCart);
+            if(insert!=0){
+                jsonObject.put("code",0);
+                jsonObject.put("msg","加入购物车成功");
+            }else {
+                jsonObject.put("code",1);
+                jsonObject.put("msg","加入购物车失败");
+            }
         }
         return jsonObject;
     }
@@ -59,14 +67,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
      * @return
      */
     @Override
-    public JSONObject deleteCart(Integer[] id) {
+    public JSONObject deleteCart(Integer[] ids) {
         JSONObject jsonObject = new JSONObject();
         int sum = 0;
-        for (int i =0; i<id.length;i++){
-            shoppingCartMapper.deleteByPrimaryKey(id[i]);
+        for (int i =0; i<ids.length;i++){
+            shoppingCartMapper.deleteByPrimaryKey(ids[i]);
             sum++;
         }
-        if(sum==id.length){
+        if(sum==ids.length){
             jsonObject.put("code",0);
             jsonObject.put("msg","删除成功");
         }else {

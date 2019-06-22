@@ -19,4 +19,6 @@ public interface ShoppingCartMapper {
     int updateByPrimaryKey(ShoppingCart record);
 
     List<ShowCartCommodity> selectCartByCustomer(Integer customer_id);
+
+    ShoppingCart selectByCustomerAndCommodity(ShoppingCart shoppingCart);
 }
