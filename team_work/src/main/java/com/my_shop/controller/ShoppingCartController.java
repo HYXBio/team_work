@@ -45,6 +45,18 @@ public class ShoppingCartController {
         return cartList;
     }
 
+    @RequestMapping(value = "/user/shopping_cart/getOrderCart.action")
+    @ResponseBody
+    public JSONObject getOrderCart(Integer[] ids){
+//        Integer id = (Integer) session.getAttribute("id");
+//        JSONObject cartList = shoppingCartService.getCartList(id);
+//        return cartList;
+        return null;
+    }
+
+
+
+
     /**
      * 批量删除
      * @param

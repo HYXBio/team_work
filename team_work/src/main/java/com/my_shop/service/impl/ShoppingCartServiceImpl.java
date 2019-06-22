@@ -10,6 +10,7 @@ import com.my_shop.service.ShoppingCartService;
 import com.my_shop.vo.ShowCartCommodity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -58,6 +59,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         jsonObject.put("code",0);
         jsonObject.put("msg","用户购物车");
         jsonObject.put("data",showCartCommodities);
+        return jsonObject;
+    }
+    @Override
+    public JSONObject getOrderCartList(Integer[] ids) {
+        List<ShowCartCommodity> showOrderCommodities= new ArrayList<>();
+        for(int i =0 ;i < ids.length;i++){
+            ShowCartCommodity showCartCommodity = shoppingCartMapper.selectCartById(ids[i]);
+            showOrderCommodities.add(showCartCommodity);
+        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        jsonObject.put("msg","购物车结算");
+        jsonObject.put("data",showOrderCommodities);
         return jsonObject;
     }
 

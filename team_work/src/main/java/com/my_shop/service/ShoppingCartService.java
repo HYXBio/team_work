@@ -8,6 +8,8 @@ public interface ShoppingCartService {
 
     public JSONObject getCartList(Integer id);
 
+    JSONObject getOrderCartList(Integer[] ids);
+
     public  JSONObject deleteCart(Integer[] id);
 
     public  JSONObject updateCart(Integer id,Integer commodityNumber);

@@ -86,6 +86,12 @@
      where customer_id=#{customer_id}
   </select>
 
+  <select id="selectCartById" parameterType="int" resultMap="CommdityResultMap">
+    select commodity_id,commodity_number
+    from tb_shopping_cart
+     where id=#{id}
+  </select>
+
   <resultMap id="CommdityResultMap" type="com.my_shop.vo.ShowCartCommodity">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="commodity_id" jdbcType="INTEGER" property="commodityId" />

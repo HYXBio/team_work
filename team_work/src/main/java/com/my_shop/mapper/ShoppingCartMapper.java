@@ -21,4 +21,7 @@ public interface ShoppingCartMapper {
     List<ShowCartCommodity> selectCartByCustomer(Integer customer_id);
 
     ShoppingCart selectByCustomerAndCommodity(ShoppingCart shoppingCart);
+
+
+    ShowCartCommodity selectCartById(Integer id);
 }
