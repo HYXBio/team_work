@@ -70,7 +70,7 @@ function handleTb_CommodityList(list) {
         '                    <div class="send"><small>配送至：</small><input value="北京朝阳区三环以内" name="" /><span>由 <u>奥凡尼旗舰店</u>从广东佛山市发货，并提供售后服务。</span><div class="clear"></div></div>\n' +
         '                    <div class="size"><small>选择尺码：</small><p><span>进口厚皮 双人位+贵妃位+边几</span><span class="on">进口厚皮 双人位+贵妃位+边几</span><span>进口厚皮 全套系列</span><span>进口厚皮 双+贵+单+边几</span></p><div class="clear"></div></div>\n' +
         '                    <div class="number">\n' +
-        '                        <small>数量：</small><input type="text" class="num" id="commodity_number"/><span class="add"></span><span class="minus "></span>\n' +
+        '                        <small>数量：</small><input type="text" class="num" id="commodity_number"/><span class="add"></span><span class="minus"></span>\n' +
         '                        <div class="ku"><p>件&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存<span>&tb_CommodityListIn_stock</span>件</p></div>\n' +
         '                        <div class="clear"></div>\n' +
         '                    </div>\n' +
@@ -103,7 +103,6 @@ function handleTb_CommodityList(list) {
     $("#tb_CommodityList").html(allHtml);
 
 
-
     //点击立即购买
     $("#buy").click(function(){
         /*
@@ -119,7 +118,7 @@ function handleTb_CommodityList(list) {
         }
     });
 
-    //添加id,数量到购物车
+    //点击立即购买，添加id,数量到购物车
     function addBuyShopping_cart(id,number){
         $.ajax({
             url:"/shop/user/shopping_cart/addToShoppingCar.action",
@@ -170,7 +169,6 @@ function handleTb_CommodityList(list) {
             })
         }
     });
-
 }
 
 //正则表达式
