@@ -30,7 +30,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         JSONObject jsonObject = new JSONObject();
         ShoppingCart judgeCart = shoppingCartMapper.selectByCustomerAndCommodity(shoppingCart);
         if(judgeCart!=null){
-            judgeCart.setCommodityNumber(judgeCart.getCommodityNumber()+1);
+            judgeCart.setCommodityNumber(judgeCart.getCommodityNumber()+shoppingCart.getCommodityNumber());
             shoppingCartMapper.updateByPrimaryKeySelective(judgeCart);
             jsonObject.put("code",0);
             jsonObject.put("msg","加入购物车成功");
