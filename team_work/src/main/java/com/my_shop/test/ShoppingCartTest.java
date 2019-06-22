@@ -69,4 +69,13 @@ public class ShoppingCartTest {
         JSONObject j = shoppingCartService.addToCart(shoppingCart);
         System.out.println(j);
     }
+
+    @Test
+    public void fun6(){
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setCustomerId(1);
+        shoppingCart.setCommodityId(3);
+        JSONObject j = shoppingCartService.addToCart(shoppingCart);
+        System.out.println(j);
+    }
 }
