@@ -19,7 +19,7 @@ public class ShoppingCartController {
 
     /**
      * 加入购物车
-     * @param request
+     * @param
      * @param shoppingCart
      * @return
      */
@@ -34,7 +34,7 @@ public class ShoppingCartController {
 
     /**
      * 获取用户购物车
-     * @param request
+     * @param
      * @return
      */
     @RequestMapping(value = "/user/shopping_cart/getCustomerShoppingCar.action")
@@ -45,9 +45,21 @@ public class ShoppingCartController {
         return cartList;
     }
 
+    @RequestMapping(value = "/user/shopping_cart/getOrderCart.action")
+    @ResponseBody
+    public JSONObject getOrderCart(Integer[] ids){
+//        Integer id = (Integer) session.getAttribute("id");
+//        JSONObject cartList = shoppingCartService.getCartList(id);
+//        return cartList;
+        return null;
+    }
+
+
+
+
     /**
      * 批量删除
-     * @param id
+     * @param
      * @return
      */
     @RequestMapping(value = "/user/shopping_cart/deleteShoppingCar.action")
@@ -55,7 +67,9 @@ public class ShoppingCartController {
     public JSONObject deleteShoppingCar(Integer[] id){
         JSONObject result = shoppingCartService.deleteCart(id);
         return result;
+
     }
+
 
     /**
      * 更新购物车

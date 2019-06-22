@@ -10,6 +10,7 @@ import com.my_shop.service.ShoppingCartService;
 import com.my_shop.vo.ShowCartCommodity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -27,13 +28,21 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public JSONObject addToCart(ShoppingCart shoppingCart) {
         JSONObject jsonObject = new JSONObject();
-        int insert = shoppingCartMapper.insert(shoppingCart);
-        if(insert!=0){
+        ShoppingCart judgeCart = shoppingCartMapper.selectByCustomerAndCommodity(shoppingCart);
+        if(judgeCart!=null){
+            judgeCart.setCommodityNumber(judgeCart.getCommodityNumber()+1);
+            shoppingCartMapper.updateByPrimaryKeySelective(judgeCart);
             jsonObject.put("code",0);
             jsonObject.put("msg","加入购物车成功");
         }else {
-            jsonObject.put("code",1);
-            jsonObject.put("msg","加入购物车失败");
+            int insert = shoppingCartMapper.insert(shoppingCart);
+            if(insert!=0){
+                jsonObject.put("code",0);
+                jsonObject.put("msg","加入购物车成功");
+            }else {
+                jsonObject.put("code",1);
+                jsonObject.put("msg","加入购物车失败");
+            }
         }
         return jsonObject;
     }
@@ -52,6 +61,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         jsonObject.put("data",showCartCommodities);
         return jsonObject;
     }
+    @Override
+    public JSONObject getOrderCartList(Integer[] ids) {
+        List<ShowCartCommodity> showOrderCommodities= new ArrayList<>();
+        for(int i =0 ;i < ids.length;i++){
+            ShowCartCommodity showCartCommodity = shoppingCartMapper.selectCartById(ids[i]);
+            showOrderCommodities.add(showCartCommodity);
+        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        jsonObject.put("msg","购物车结算");
+        jsonObject.put("data",showOrderCommodities);
+        return jsonObject;
+    }
 
     /**
      * 删除购物车
@@ -59,14 +81,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
      * @return
      */
     @Override
-    public JSONObject deleteCart(Integer[] id) {
+    public JSONObject deleteCart(Integer[] ids) {
         JSONObject jsonObject = new JSONObject();
         int sum = 0;
-        for (int i =0; i<id.length;i++){
-            shoppingCartMapper.deleteByPrimaryKey(id[i]);
+        for (int i =0; i<ids.length;i++){
+            shoppingCartMapper.deleteByPrimaryKey(ids[i]);
             sum++;
         }
-        if(sum==id.length){
+        if(sum==ids.length){
             jsonObject.put("code",0);
             jsonObject.put("msg","删除成功");
         }else {
