@@ -61,10 +61,10 @@ function handleTb_CommodityList(list) {
         '                            <td width="8%">售价：</td>\n' +
         '                            <td width="41%"><b>￥<span>&tb_CommodityListPrice</span></b></td>\n' +
         '                            <td width="7%">原价：</td>\n' +
-        '                            <td width="44%"><del>￥<span>&tb_CommodityListDiscount</span>></del></td>\n' +
+        '                            <td width="44%"><del>￥<span>&tb_CommodityListDiscount</span></del></td>\n' +
         '                          </tr>\n' +
         '                        </table>\n' +
-        '                  \t</div>\n' +
+        '                  </div>\n' +
         '                    <div class="send"><small>配送至：</small><input value="北京朝阳区三环以内" name="" /><span>由 <u>奥凡尼旗舰店</u>从广东佛山市发货，并提供售后服务。</span><div class="clear"></div></div>\n' +
         '                    <div class="size"><small>选择尺码：</small><p><span>进口厚皮 双人位+贵妃位+边几</span><span class="on">进口厚皮 双人位+贵妃位+边几</span><span>进口厚皮 全套系列</span><span>进口厚皮 双+贵+单+边几</span></p><div class="clear"></div></div>\n' +
         '                    <div class="number">\n' +
