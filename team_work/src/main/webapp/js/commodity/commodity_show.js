@@ -70,7 +70,7 @@ function handleTb_CommodityList(list) {
         '                    <div class="send"><small>配送至：</small><input value="北京朝阳区三环以内" name="" /><span>由 <u>奥凡尼旗舰店</u>从广东佛山市发货，并提供售后服务。</span><div class="clear"></div></div>\n' +
         '                    <div class="size"><small>选择尺码：</small><p><span>进口厚皮 双人位+贵妃位+边几</span><span class="on">进口厚皮 双人位+贵妃位+边几</span><span>进口厚皮 全套系列</span><span>进口厚皮 双+贵+单+边几</span></p><div class="clear"></div></div>\n' +
         '                    <div class="number">\n' +
-        '                        <small>数量：</small><input type="text" class="num" id="commodity_number"/><span class="+"></span><span class="-"></span>\n' +
+        '                        <small>数量：</small><input type="text" class="num" id="commodity_number"/><span class="add"></span><span class="minus "></span>\n' +
         '                        <div class="ku"><p>件&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存<span>&tb_CommodityListIn_stock</span>件</p></div>\n' +
         '                        <div class="clear"></div>\n' +
         '                    </div>\n' +
@@ -115,12 +115,12 @@ function handleTb_CommodityList(list) {
 
         if(number > 0){
             //添加id,数量到购物车
-            addShopping_cart(id,number);
+            addBuyShopping_cart(id,number);
         }
     });
 
     //添加id,数量到购物车
-    function addShopping_cart(id,number){
+    function addBuyShopping_cart(id,number){
         $.ajax({
             url:"/shop/user/shopping_cart/addToShoppingCar.action",
             type:"GET",
@@ -140,6 +140,37 @@ function handleTb_CommodityList(list) {
             }
         })
     }
+
+    //点击加入购物车
+    $("#join").click(function(){
+        /*
+        * 获取输入框内的数量
+        * 发送后端
+        * */
+        var id = tb_commodity.id;
+        var number = $("#commodity_number").val()||"";
+
+        if(number > 0){
+            //添加id,数量到购物车
+            $.ajax({
+                url:"/shop/user/shopping_cart/addToShoppingCar.action",
+                type:"GET",
+                data:{
+                    commodityId:id,
+                    commodityNumber:number
+                },
+                success:function (result) {
+                    if (result.code == 0){
+                        location.href = "product_show.html"
+                    }
+                },
+                error:function(error){
+                    alert(error);
+                }
+            })
+        }
+    });
+
 }
 
 //正则表达式
