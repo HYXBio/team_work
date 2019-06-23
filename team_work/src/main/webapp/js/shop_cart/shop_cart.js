@@ -184,16 +184,16 @@ function updateCount(pId,commodityNumber)
 //点击结算  将选中的商品ids存入到session中
 $(".code").click(function () {
 
-    var pIds = [];
+    var cartIds = [];
     //给每一个选中的标签都绑定一个方法
     //$("input[name='uname']:checked").each(function(){
 
     $("input.pId:checked").each(function(i){
         //将标签的值放入数组中
-        pIds[i]=$(this).val();
+        cartIds[i]=$(this).val();
         // pIds.push($(this).val());//此处添加不能使用add  add不是一个function
     });
 
-   sessionStorage.setItem("pIds",pIds);
+   sessionStorage.setItem("cartIds",cartIds);
    location.href="info.html";
 });
