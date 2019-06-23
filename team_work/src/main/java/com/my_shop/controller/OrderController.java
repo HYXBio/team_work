@@ -19,7 +19,6 @@ public class OrderController {
     @ResponseBody
     public JSONObject orderGeneration(Integer[] cart_ids, Integer address_id, HttpSession session){
         Integer id = (Integer) session.getAttribute("id");
-        orderService.handlerGenerationOrder(cart_ids,address_id,id);
         JSONObject result = orderService.handlerGenerationOrder(cart_ids,address_id,id);;
         return result;
     }
