@@ -1,7 +1,6 @@
 package com.my_shop.test;
 
 import com.alibaba.fastjson.JSONObject;
-import com.my_shop.entity.Commodity;
 import com.my_shop.entity.ShoppingCart;
 import com.my_shop.mapper.CommodityMapper;
 import com.my_shop.mapper.ShoppingCartMapper;
@@ -64,8 +63,19 @@ public class ShoppingCartTest {
 
     @Test
     public void fun5(){
-        Integer[] ids = {1,2};
-        JSONObject j = shoppingCartService.getOrderCartList(ids);
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setCustomerId(1);
+        shoppingCart.setCommodityId(1);
+        JSONObject j = shoppingCartService.addToCart(shoppingCart);
+        System.out.println(j);
+    }
+
+    @Test
+    public void fun6(){
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setCustomerId(1);
+        shoppingCart.setCommodityId(3);
+        JSONObject j = shoppingCartService.addToCart(shoppingCart);
         System.out.println(j);
     }
 }

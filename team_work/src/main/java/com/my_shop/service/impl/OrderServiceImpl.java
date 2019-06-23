@@ -41,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
         JSONObject jsonObject = new JSONObject();
         Order order = generationOrder(par);
         for(int i = 0; i< ids.length;i++){
-            ShoppingCart shoppingCart = shoppingCartMapper.selectByPrimaryKey(ids[0]);
+            ShoppingCart shoppingCart = shoppingCartMapper.selectByPrimaryKey(ids[i]);
             generationOrderDetial(order,shoppingCart);
         }
         jsonObject.put("code",0);
@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
         order.setCustomerId((Integer) par[0]);
         order.setTotalQuantity((Integer) par[1]);
         order.setTotalPrice((Double) par[2]);
-        order.setAddressId((Integer) par[1]);
+        order.setAddressId((Integer) par[3]);
         order.setStatus(1);
         orderMapper.insert(order);
         return order;
@@ -77,7 +77,7 @@ public class OrderServiceImpl implements OrderService {
         int sum = 0;
         double total_money=0;
         for(int i = 0; i< ids.length;i++){
-            ShoppingCart shoppingCart = shoppingCartMapper.selectByPrimaryKey(ids[0]);
+            ShoppingCart shoppingCart = shoppingCartMapper.selectByPrimaryKey(ids[i]);
             Commodity commodity = commodityMapper.selectByPrimaryKey(shoppingCart.getCommodityId());
             sum += shoppingCart.getCommodityNumber();
             total_money +=shoppingCart.getCommodityNumber()*commodity.getPrice();
