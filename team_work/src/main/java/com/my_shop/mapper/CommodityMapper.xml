@@ -138,12 +138,12 @@
     select count(id) from tb_commodity
   </select>
 
-  <select id="selectCommdityBySummary"  parameterType="string" resultType="commodity">
+  <select id="selectCommdityBySummary"  parameterType="string" resultMap="commodity">
     select id,name,price,img_url from tb_commodity where name like "%"#{summary}"%"
   </select>
 
-  <select id="selectCommdityOrderBy"  parameterType="string" resultType="commodity">
-    select id,name,price,img_url from tb_commodity order by desc
+  <select id="selectCommdityOrderBy"  parameterType="string" resultMap="BaseResultMap">
+    select id,name,price,img_url from tb_commodity order by price desc
   </select>
 
 </mapper>
