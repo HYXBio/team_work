@@ -58,7 +58,8 @@
                     alert(result.msg);
                 }
                 else {
-                    alert(result.msg)
+                    alert(result.msg);
+                    sessionStorage.setItem("name",result.data.name);
                 }
             },error:function (data) {
                 alert(data);

@@ -68,7 +68,6 @@ $("#getShopCartList").on("click",".jian",function () {
     var pId=$(this).parent().parent().children().eq(0).children(":input.pId").val();
     if(count=="1")
     {
-
         //删除
     }else {
         $.ajax({
