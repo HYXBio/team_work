@@ -4,8 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>我的购物车</title>
 <link href="css/style.css" type="text/css" rel="stylesheet" />
-<script src="js/jquery-1.7.min.js" type="text/javascript"></script>
+    <script src="js/jquery-1.9.1.min.js"></script>
 <script src="js/common.js"  type="text/javascript"></script>
+    <script src="js/about_user/user_message.js"></script>
 
 </head>
 <body class="index">
@@ -13,8 +14,8 @@
 
 <div class="top">
 	<div class="w1200">
-		<div class="left">您好，欢迎光临易易城！<a href="#">[登录]</a> <a href="#">[注册]</a></div>
-        <div class="right"><a href="#">我的会员中心</a>|<a href="#">收藏夹</a>|<a href="#">服务中心</a>|<a href="#">在线客服</a>|<a href="#">购物车<b>0</b>件</a></div>
+		<div class="left" id = "&user_name">您好，欢迎光临易易城! <a href="#">[登录]</a> <a href="#">[注册]</a></div>
+        <div class="right"><a href="pwd.html">我的会员中心</a>|<a href="#">收藏夹</a>|<a href="#">服务中心</a>|<a href="#">在线客服</a>|<a href="#">购物车<b>0</b>件</a></div>
         <div class="clear"></div>
     </div>
 </div>
@@ -57,7 +58,7 @@
                 </ul>
             </div>
         </div>
-    	<div class="item"><a href="#" class="home">商城首页</a></div>
+    	<div class="item"><a href="index.html" class="home">商城首页</a></div>
         <div class="item"><a href="#">易易特色</a></div>
         <div class="item"><a href="#">热销产品</a></div>
         <div class="item"><a href="#">新品上市</a></div>
@@ -92,15 +93,13 @@
                     </tbody>
 
 
-
-
                   <tr class="tr_d">
                     <td colspan="7">
                     	<table width="100%" border="0" cellspacing="0" cellpadding="0">
                           <tr>
                             <td width="75%"><span class="del"><a href="#" class="batchDelete">删除选中商品</a></span></td>
-                            <td width="11%">已选商品  <strong>1</strong>  件</td>
-                            <td width="14%" class="all_price">合计：<font>￥3083.00</font></td>
+                            <td width="11%">已选商品  <strong id="totalCount">1</strong>  件</td>
+                            <td width="14%" class="all_price">合计：￥<span class="size:100px " id="totalPrice">3083.00</span></td>
                           </tr>
                         </table>
                     </td>

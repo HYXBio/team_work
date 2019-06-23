@@ -22,11 +22,10 @@ function getShopCartList() {
 
 //处理获取到的商品信息  展示在页面上
 function  handleShopCartList(list) {
-
     var row=
         '  <tr class="tr_c" >    ' +
 
-        '        <td> <input type="checkbox" checked="checked" class="pId" value="&&pid" /> </td>\n' +
+        '        <td> <input    type="checkbox" checked="checked" class="pId" value="&&pid" /> </td>\n' +
         '\n' +
         '                    <td colspan="2">\n' +
         '\n' +
@@ -44,148 +43,111 @@ function  handleShopCartList(list) {
         '           <td><a href="#" class="deleteOne">删除 </a></td>\n' +
         ' </tr>   ' +
         '';
-
-
+    var totalPrice=0 ;
     var allhtml="";
     for (var i = 0; i <list.length ; i++) {
-        var commodity=list[i];
-        var row_=row.replace("&&pid",commodity.id);
+        var cart=list[i];
+        var commodity=cart.commodity;
+        var row_=row.replace("&&pid",cart.id);
         row_=row_.replace("&&img_url",commodity. img_url);
         row_=row_.replace("&&name",commodity.name);
         row_=row_.replace("&&price",commodity.price);
-        row_=row_.replace("&&count",commodity.count);
-        row_=row_.replace("&&allprice",commodity.price*commodity.count()*1.0);
+        row_=row_.replace("&&count",cart.commodityNumber);
+        row_=row_.replace("&&allprice",commodity.price*cart.commodityNumber*1.0);
+        row_=row_.replace("&&cnt",i);
+        totalPrice+=commodity.price*cart.commodityNumber*1.0;
         allhtml+=row_;
+
+
     }
-    $("#getShopCartList").html(allHtml);
+
+    $("#getShopCartList").html(allhtml);
+    $("#totalCount").text(list.length);
+    $("#totalPrice").text(totalPrice);
 
 }
 
-
 //添加 - 1 的点击事件
 $("#getShopCartList").on("click",".jian",function () {
-    var count=$(this).next().val();
+    var commodityNumber=0;
+    commodityNumber=  $(this).next().val()-1;
     var pId=$(this).parent().parent().children().eq(0).children(":input.pId").val();
+<<<<<<< HEAD
     if(count=="1")
+=======
+
+    if(commodityNumber==0)
+>>>>>>> 76204f8f881fb8514399a8cdd7244775b14ba9e8
     {
         //删除
-    }else {
-        $.ajax({
-            url:"/shop/shop_Cart/minus.action",
-            data:{
-                pId:pId
+        batchDelete(pId)
 
-            },
-            success:function (result) {
-                if (result.code=="0")
-                {
-                    $(".pCount").val(count-1)
-                }
-                else {
-                    console.log("减一出错")
-                }
-            },
-            error:function (error) {
-                console.log(error)
-            }
-        })
+    }else {
+        $(this).next().val(commodityNumber);
+        updateCount(pId,commodityNumber);
     }
 
 });
 
 //添加 +1 的点击事件
 $("#getShopCartList").on("click",".jia",function () {
-    var count=$(this).prev().val();
+    var commodityNumber=0;
+        commodityNumber=1+Number($(this).prev().val());
     var pId=$(this).parent().parent().children().eq(0).children(":input.pId").val();
-    $.ajax({
-        url:"/shop/shop_Cart/addOne.action",
-        data:{
-            pId:pId
-        },
-        success:function (result) {
-            if (result.code=="0")
-            {
-                $(".pCount").val(count+1)
-            }
-            else {
-                console.log("加一出错")
-            }
-        },
-        error:function (error) {
-            console.log(error)
-        }
-    })
+
+    $(this).prev().val(commodityNumber);
+    updateCount(pId,commodityNumber);
+
 });
 
 // 改变 商品数量  光标移开的是时候就
 $("#getShopCartList").on("blur",".pCount",function () {
-    var count=$(this).val();
+    var commodityNumber=$(this).val();
     var pId=$(this).parent().parent().children().eq(0).children(":input.pId").val();
-    $.ajax({
-        url:"/shop/shop_Cart/minus.action",
-        data:{
-            pId:pId
-        },
-        success:function (result) {
-            if (result.code=="0")
-            {
-                $(".pCount").val(count+1)
-            }
-            else {
-                console.log("减一出错")
-            }
-        },
-        error:function (error) {
-            console.log(error)
-        }
-    })
+    updateCount(pId,commodityNumber);
 });
+
 
 //删除 一种商品
 $("#getShopCartList").on("click",".deleteOne",function () {
     var pId=$(this).parent().parent().children().eq(0).children(":input.pId").val();
-    $.ajax({
-        url:"/shop/shop_Cart/deleteOne.action",
-        data:{
-            pId:pId
-        },
-        success:function (result) {
-            if (result.code=="0")
-            {
-                console.log("移除成功");
-                $(this).parent().parent().toggle();
-            }
-            else {
-                console.log("移除出错")
-            }
-        },
-        error:function (error) {
-            console.log(error)
-        }
-    })
-});
-// 批量删除
+    // var id=new Array();
+    // id.push(pId);
 
+    batchDelete(pId)
+});
+
+// 批量删除
 $(".batchDelete").click(function () {
 
-    var pIds = new Array();
+    var pIds = [];
     //给每一个选中的标签都绑定一个方法
     //$("input[name='uname']:checked").each(function(){
-    $("input.pId:checked").each(function(){
-        //将标签的值放入数组中
-        pIds.push($(this).val());//此处添加不能使用add  add不是一个function
-    });
 
+    $("input.pId:checked").each(function(i){
+        //将标签的值放入数组中
+        pIds[i]=$(this).val();
+       // pIds.push($(this).val());//此处添加不能使用add  add不是一个function
+    });
+    batchDelete(pIds)
+
+});
+
+
+
+//移除购物车中的商品
+function batchDelete(pIds) {
     $.ajax({
-        url:"/shop/shop_Cart/batchDelete.action",
+        url:"/shop/user/shopping_cart/deleteShoppingCar.action",
         data:{
-            pId:pId
+            id:pIds
         },
+        traditional: true,  //解决传递数组的问题
         success:function (result) {
             if (result.code=="0")
             {
                 console.log("全部移除成功");
-                $(this).parent().parent().toggle();
+                getShopCartList();
             }
             else {
                 console.log("移除出错")
@@ -195,11 +157,47 @@ $(".batchDelete").click(function () {
             console.log(error)
         }
     })
-});
+}
 
+//修改商品的数量
+function updateCount(pId,commodityNumber)
+{
+    $.ajax({
+        url:"/shop/user/shopping_cart/updateShoppingCar.action",
+        data:{
+            id:pId,
+            commodityNumber:commodityNumber
 
+        },
+        success:function (result) {
+            if (result.code=="0")
+            {
+                alert("修改成功")
+            }
+            else {
+                getShopCartList();
+            }
+        },
+        error:function (error) {
+            alert(error);
+        }
+    })
+
+}
+
+//点击结算  将选中的商品ids存入到session中
 $(".code").click(function () {
-   sessionStorage.setItem("cartList",list);
+
+    var cartIds = [];
+    //给每一个选中的标签都绑定一个方法
+    //$("input[name='uname']:checked").each(function(){
+
+    $("input.pId:checked").each(function(i){
+        //将标签的值放入数组中
+        cartIds[i]=$(this).val();
+        // pIds.push($(this).val());//此处添加不能使用add  add不是一个function
+    });
+
+   sessionStorage.setItem("cartIds",cartIds);
    location.href="info.html";
 });
-

@@ -46,6 +46,7 @@ public class OrderServiceImpl implements OrderService {
         }
         jsonObject.put("code",0);
         jsonObject.put("msg","订单生成");
+        jsonObject.put("data",order.getId());
         return jsonObject;
     }
 
