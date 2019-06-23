@@ -44,59 +44,5 @@
     <p>网络文化经营许可证：粤网文[2015]0295-065号<br />© 2015 深圳易易城科技网络有限公司. 粤ICP备15042543号</p>
 </div>
 </body>
-<<<<<<< HEAD
-<script type="text/javascript">
-    //用户登录
-    $("#userLogin").click(function () {
-        var password =hex_md5($("#password").val());
-        $.ajax({
-           url:"/shop/customer/customerLogin.action",
-           type:"POST",
-           data:{
-               name:$("#name").val(),
-               password:password
-           }, success:function (result) {
-                if(result.code!=0){
 
-                    alert(result.msg);
-                }
-                else {
-                    location.href="product.html",
-                    alert(result.msg)
-                }
-            },error:function (data) {
-
-                alert(data);
-            }
-        });
-    });
-</script>
-=======
-<!--<script type="text/javascript">-->
-    <!--//用户登录-->
-    <!--$("#userLogin").click(function () {-->
-        <!--var password =hex_md5($("#password").val());-->
-        <!--$.ajax({-->
-           <!--url:"/shop/customer/customerLogin.action",-->
-           <!--type:"POST",-->
-           <!--data:{-->
-               <!--name:$("#name").val(),-->
-               <!--password:password-->
-           <!--}, success:function (result) {-->
-                <!--if(result.code!=0){-->
-                    <!--alert(result.msg);-->
-                <!--}-->
-                <!--else {-->
-                    <!--alert(result.msg);-->
-                    <!--sessionStorage.setItem("name",result.data.name);-->
-                    <!--sessionStorage.setItem("balance",result.data.balance);-->
-                    <!--window.location.href= "pwd.html";-->
-                <!--}-->
-            <!--},error:function (data) {-->
-                <!--alert(data);-->
-            <!--}-->
-        <!--});-->
-    <!--});-->
-<!--</script>-->
->>>>>>> 5270181a94ca48293b3cac79f62a2d3a239edf9f
 </html>
