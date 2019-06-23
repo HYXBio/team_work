@@ -55,4 +55,20 @@ public class AddressServiceImpl implements AddressService {
         }
         return jsonObject;
     }
+
+    /**
+     * 地址删除
+     * @param id
+     * @return
+     */
+    @Override
+    public JSONObject deleteAddressById(Integer id) {
+        JSONObject jsonObject = new JSONObject();
+        int i = addressMapper.deleteByPrimaryKey(id);
+        if(i!=0){
+            jsonObject.put("code",0);
+            jsonObject.put("msg","删除地址成功");
+        }
+        return jsonObject;
+    }
 }

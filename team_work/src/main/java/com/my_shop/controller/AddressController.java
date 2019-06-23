@@ -18,7 +18,7 @@ public class AddressController {
 
     /**
      * 获取用户地址
-     * @param request
+     * @param session
      * @return
      */
     @RequestMapping(value = "/user/address/getCustomerAddress.action")
@@ -32,7 +32,7 @@ public class AddressController {
     /**
      * 添加或者更新地址信息
      * @param address
-     * @param request
+     * @param session
      * @return
      */
     @RequestMapping(value = "/user/address/upDateOrAddAddress.action")
@@ -43,4 +43,17 @@ public class AddressController {
         JSONObject result = addressService.upDateOrAddAddress(address);
         return result;
     }
+
+    /***
+     * 删除地址信息
+     * @param addressId
+     * @return
+     */
+    @RequestMapping(value = "/user/address/deleteAddress.action")
+    @ResponseBody
+    public JSONObject deleteAddress(Integer addressId){
+        JSONObject jsonObject = addressService.deleteAddressById(addressId);
+        return jsonObject;
+    }
+
 }
