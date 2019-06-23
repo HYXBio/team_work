@@ -181,8 +181,6 @@ function getQueryString(name) {
 
 
 
-//获取购买数量
-//点击加入购物车
 
 
 

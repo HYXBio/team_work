@@ -23,9 +23,9 @@ public class CommdityServiceImpl implements CommdityService {
         List<Commodity> commodityList = new ArrayList<>();
         JSONObject result = new JSONObject();
         Integer total = commodityMapper.selectCommdityCount();
-        if(page ==null){
+        if(page == null){
             commodityList = commodityMapper.selectCommdityList(0);
-        }else {
+        }else{
             commodityList = commodityMapper.selectCommdityList(page*5);
         }
         JSONObject data = new JSONObject();

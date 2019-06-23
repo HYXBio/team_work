@@ -83,7 +83,7 @@
         </div>
     </div>
     
-    <div class="order"><a href="#" class="cur">综合排序</a><a href="#">销量</a><a href="#">价格</a><a href="#">评论数</a><span><font>共1889件商品  <strong><b>1</b>/50</strong></font><a href="#">></a><a href="#"><</a></span>
+    <div class="order"><a href="#" class="cur">综合排序</a><a href="#">销量</a><a href="#" id="commodityPrice">价格</a><a href="#">评论数</a><span><font>共1889件商品  <strong><b>1</b>/50</strong></font><a href="#">></a><a href="#"><</a></span>
     <div class="clear"></div>
     </div>
     
@@ -211,17 +211,17 @@
     </div>
     
 
-	<div class="page">
+	<div class="page" id="product_Page">
         <div class="clear"></div>
-    	<a href="#" class="pre"><上一页</a>
+    	<a href="#" class="pre" id="upPage"><上一页</a>
         <a href="#" class="on">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
+        <a href="#" class="on">2</a>
+        <a href="#" class="on">3</a>
+        <a href="#" class="on">4</a>
+        <a href="#" class="on">5</a>
+        <a href="#" class="on">6</a>
         <span>...</span>
-        <a href="#" class="next">下一页></a>
+        <a href="#" class="next" id="nextPage">下一页></a>
         共50页 到第<input type="text" value="1" />页  <a href="#" class="sub">确定</a>
     </div>
 </div>
@@ -318,4 +318,5 @@
 
 </body>
 <script src="js/commodity/commodity.js"></script>
+
 </html>

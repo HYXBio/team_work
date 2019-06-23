@@ -55,12 +55,15 @@
                password:password
            }, success:function (result) {
                 if(result.code!=0){
+
                     alert(result.msg);
                 }
                 else {
+                    location.href="product.html",
                     alert(result.msg)
                 }
             },error:function (data) {
+
                 alert(data);
             }
         });
