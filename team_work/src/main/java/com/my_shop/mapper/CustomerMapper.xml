@@ -116,7 +116,7 @@
   </update>
 
   <select id="selectByName" parameterType="string" resultType="customer">
-    select id,name,password from tb_customer where name = #{name}
+    select id,name,password,balance from tb_customer where name = #{name}
   </select>
 
 </mapper>

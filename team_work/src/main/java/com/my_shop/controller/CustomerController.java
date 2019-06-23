@@ -58,6 +58,18 @@ public class CustomerController {
         return result;
     }
 
-
+    /**
+     * 用户退出
+     * @return
+     */
+    @RequestMapping(value = "/user/customer/exitLogin.action")
+    @ResponseBody
+    public JSONObject exitLogin(HttpSession session){
+         session.removeAttribute("id");
+        JSONObject result = new JSONObject();
+        result.put("code",0);
+        result.put("msg","退出成功");
+        return result;
+    }
 
 }

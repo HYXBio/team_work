@@ -88,7 +88,7 @@ $("#getShopCartList").on("click",".jian",function () {
 //添加 +1 的点击事件
 $("#getShopCartList").on("click",".jia",function () {
     var commodityNumber=0;
-        commodityNumber=1+Number($(this).prev().val());
+    commodityNumber=1+Number($(this).prev().val());
     var pId=$(this).parent().parent().children().eq(0).children(":input.pId").val();
 
     $(this).prev().val(commodityNumber);
@@ -123,7 +123,7 @@ $(".batchDelete").click(function () {
     $("input.pId:checked").each(function(i){
         //将标签的值放入数组中
         pIds[i]=$(this).val();
-       // pIds.push($(this).val());//此处添加不能使用add  add不是一个function
+        // pIds.push($(this).val());//此处添加不能使用add  add不是一个function
     });
     batchDelete(pIds)
 
@@ -194,6 +194,6 @@ $(".code").click(function () {
         // pIds.push($(this).val());//此处添加不能使用add  add不是一个function
     });
 
-   sessionStorage.setItem("cartIds",cartIds);
-   location.href="info.html";
+    sessionStorage.setItem("cartIds",cartIds);
+    location.href="info.html";
 });
