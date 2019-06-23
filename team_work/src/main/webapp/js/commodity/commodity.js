@@ -50,7 +50,7 @@ function handleCommodityList(list){
     $("#commodityList").html(allHtml);
 }
 
-//排序后的俩表
+//排序后的列表
 $("#commodityPrice").click(function(){
     $.ajax({
         url:"/shop/commdity/orderByStock.action",
@@ -58,7 +58,7 @@ $("#commodityPrice").click(function(){
         success:function (result) {
             if (result.code == 0){
                 var list1 = result.data;
-                handleCommodityListDesc(list1);
+                handleCommodityList(list1);
             }
         },
         error:function(error){
@@ -66,6 +66,7 @@ $("#commodityPrice").click(function(){
         }
     })
 })
+
 //排序好的list显示在页面
 function handleCommodityListDesc(list1){
     var row = '      <div class="item">\n' +
@@ -86,7 +87,7 @@ function handleCommodityListDesc(list1){
 
         var commodity = list1[i];
 
-        var row_ = row.replace(/&commodityId/g,commodity.id)
+        var row_ = row.replace("&commodityId",commodity.id)
             .replace("&commodityImg",commodity.imgUrl)
             .replace("&commodityImg1",commodity.imgUrl)
             .replace("&commodityImg2",commodity.imgUrl)

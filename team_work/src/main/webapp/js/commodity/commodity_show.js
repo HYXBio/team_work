@@ -160,7 +160,7 @@ function handleTb_CommodityList(list) {
                 },
                 success:function (result) {
                     if (result.code == 0){
-                        location.href = "product_show.html"
+                       alert(result.msg);
                     }
                 },
                 error:function(error){
